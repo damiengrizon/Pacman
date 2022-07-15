@@ -57,7 +57,7 @@ class Game(object):
                     self.dots_group.add(Ellipse(j * 32 + 12, i * 32 + 12, WHITE, 8, 8))
         # charge les effets sonores
         self.pacman_sound = pygame.mixer.Sound("pacman_sound.ogg")
-        self.pacman_sound = pygame.mixer.Sound("game_over_sound.ogg")
+        self.game_over_sound = pygame.mixer.Sound("game_over_sound.ogg")
 
     def process_event(self):
         for event in pygame.event.get():
@@ -72,10 +72,10 @@ class Game(object):
                         if self.menu.state == 0:
                             # ---- START --------
                             self.__init__()
-                            self.game_over = False
+                            Game.game_over = False
                         elif self.menu.state == 1:
                             # --- A PROPOS ------
-                            self.about = True
+                            Game.about = True
                         elif self.menu.state == 2:
                             # --- QUITTER -------
                             # User Clicked exit
@@ -89,8 +89,8 @@ class Game(object):
                 elif event.key == pygame.K_DOWN:
                     self.player.move_down()
                 elif event.key == pygame.K_ESCAPE:
-                    self.game_over = True
-                    self.about = False
+                    Game.game_over = True
+                    Game.about = False
 
             elif event.type == pygame.K_UP:
                 if event.key == pygame.K_RIGHT:
@@ -118,7 +118,7 @@ class Game(object):
             if len(block_hit_list) > 0:
                 self.player.explosion = True
                 self.game_over_sound.play()
-            self.game_over = self.player.game_over
+            Game.game_over = self.player.game_over
             self.enemies.update(self.horizontal_blocks, self.vertical_blocks)
             # tkMessageBox.showinfo("GAME OVER!", "Score final = " + str(Game.score))
 

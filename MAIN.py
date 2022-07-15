@@ -12,8 +12,8 @@ def main():
     # initialisation de tous les modules pygame importés
     pygame.init()
     # definit la largeur et la hauteur de l'écran [width, height]
-    screen = pygame.display.set_mode(SCREEN_WIDTH, SCREEN_HEIGHT)
-    # définit le totre de la fenètre du jeu
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    # définit le titre de la fenètre du jeu
     pygame.display.set_caption("PACMAN")
     # Boucle jusqu'à ce que le joueur clique sur le bouton de fermeture
     done = False
